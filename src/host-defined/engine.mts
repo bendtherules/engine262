@@ -35,14 +35,19 @@ import { shouldStepOnNode } from './debugger-util.mts';
 
 export const FEATURES = ([
   {
-    name: 'FinalizationRegistry.prototype.cleanupSome',
-    flag: 'cleanup-some',
-    url: 'https://github.com/tc39/proposal-cleanup-some',
+    name: 'Dynamic scope',
+    flag: 'dynamic-scope',
+    url: '_',
   },
   {
     name: 'Well-Formed Unicode Strings',
     flag: 'is-usv-string',
     url: 'https://github.com/tc39/proposal-is-usv-string',
+  },
+  {
+    name: 'FinalizationRegistry.prototype.cleanupSome',
+    flag: 'cleanup-some',
+    url: 'https://github.com/tc39/proposal-cleanup-some',
   },
 ]) as const;
 Object.freeze(FEATURES);

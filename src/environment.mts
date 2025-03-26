@@ -419,6 +419,7 @@ export class FunctionEnvironmentRecord extends DeclarativeEnvironmentRecord {
     // 2. Assert: Type(newTarget) is Undefined or Object.
     Assert(newTarget instanceof UndefinedValue || newTarget instanceof ObjectValue);
     // 3. Let env be a new function Environment Record containing no bindings.
+    super(surroundingAgent.feature('dynamic-scope') ? surroundingAgent.runningExecutionContext.LexicalEnvironment : F.Environment);
     super(surroundingAgent.runningExecutionContext.LexicalEnvironment);
     // 4. Set env.[[FunctionObject]] to F.
     this.FunctionObject = F;
