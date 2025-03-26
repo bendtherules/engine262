@@ -185,7 +185,7 @@ export class JSStringValue extends PrimitiveValue {
 
   readonly value: string;
 
-  private constructor(value: string) {
+  constructor(value: string) {
     super();
     this.value = value;
   }

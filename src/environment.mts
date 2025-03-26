@@ -412,6 +412,8 @@ export class ObjectEnvironmentRecord extends EnvironmentRecord {
 
 /** https://tc39.es/ecma262/#sec-function-environment-records */
 export class FunctionEnvironmentRecord extends DeclarativeEnvironmentRecord {
+  callerScope: EnvironmentRecord;
+
   /** https://tc39.es/ecma262/#sec-newfunctionenvironment */
   constructor(F: ECMAScriptFunctionObject, newTarget: UndefinedValue | ObjectValue) {
     // 1. Assert: F is an ECMAScript function.
@@ -420,7 +422,7 @@ export class FunctionEnvironmentRecord extends DeclarativeEnvironmentRecord {
     Assert(newTarget instanceof UndefinedValue || newTarget instanceof ObjectValue);
     // 3. Let env be a new function Environment Record containing no bindings.
     super(surroundingAgent.feature('dynamic-scope') ? surroundingAgent.runningExecutionContext.LexicalEnvironment : F.Environment);
-    super(surroundingAgent.runningExecutionContext.LexicalEnvironment);
+    this.callerScope = surroundingAgent.runningExecutionContext.LexicalEnvironment;
     // 4. Set env.[[FunctionObject]] to F.
     this.FunctionObject = F;
     // 5. If F.[[ThisMode]] is lexical, set env.[[ThisBindingStatus]] to lexical.
@@ -992,7 +994,11 @@ export function* GetIdentifierReference(env: EnvironmentRecord | NullValue, name
     }));
   } else {
     // a. Let outer be env.[[OuterEnv]].
-    const outer = env.OuterEnv;
+    let outer = env.OuterEnv;
+    if (name.value.startsWith('local_') && env instanceof FunctionEnvironmentRecord) {
+      outer = env.callerScope;
+      name = new JSStringValue(name.stringValue().slice(6));
+    }
     // b. Return ? GetIdentifierReference(outer, name, strict).
     return yield* GetIdentifierReference(outer, name, strict);
   }
