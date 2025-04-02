@@ -40,6 +40,11 @@ export const FEATURES = ([
     url: '_',
   },
   {
+    name: 'local_{var}',
+    flag: 'local-dynamic-scope',
+    url: '_',
+  },
+  {
     name: 'Well-Formed Unicode Strings',
     flag: 'is-usv-string',
     url: 'https://github.com/tc39/proposal-is-usv-string',

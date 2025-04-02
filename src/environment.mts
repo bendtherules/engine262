@@ -995,7 +995,7 @@ export function* GetIdentifierReference(env: EnvironmentRecord | NullValue, name
   } else {
     // a. Let outer be env.[[OuterEnv]].
     let outer = env.OuterEnv;
-    if (name.value.startsWith('local_') && env instanceof FunctionEnvironmentRecord) {
+    if (surroundingAgent.feature('local-dynamic-scope') && name.value.startsWith('local_') && env instanceof FunctionEnvironmentRecord) {
       outer = env.callerScope;
       name = new JSStringValue(name.stringValue().slice(6));
     }
