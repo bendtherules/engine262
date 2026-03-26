@@ -3,5 +3,22 @@
     "typescript.preferences.quoteStyle": "single",
     "editor.tabSize": 2,
     "npm.packageManager": "npm",
-    "eslint.useFlatConfig": false
+    "eslint.useFlatConfig": false,
+    "codesnap.target": "window",
+    "highlightLine.borderColor": "deeppink",
+    "highlightLine.borderWidth": "3px",
+    "presentation-mode.configBackup": {
+        "editor.fontSize": "undefined",
+        "terminal.integrated.fontSize": "undefined",
+        "editor.matchBrackets": "undefined",
+        "editor.minimap.enabled": "undefined",
+        "github.copilot.editor.enableAutoCompletions": "undefined",
+        "editor.quickSuggestions": "undefined",
+        "editor.suggestOnTriggerCharacters": "undefined",
+        "editor.scrollbar.verticalScrollbarSize": "undefined",
+        "workbench.activityBar.visible": "undefined",
+        "workbench.statusBar.visible": "undefined",
+        "workbench.colorTheme": "undefined",
+        "window.zoomLevel": "undefined"
+    }
 }
